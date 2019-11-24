@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.0)
 project(acf C CXX ASM)
 
-option(DISABLE_TESTS "If tests should be compiled or not" OFF)
+option(BUILD_TESTS "If tests should be built or not")
 
 set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 if (NOT CMAKE_BUILD_TYPE)
@@ -113,7 +113,7 @@ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/acf.pc.in
 install(FILES ${PROJECT_BINARY_DIR}/acf.pc
 	DESTINATION "${CMAKE_INSTALL_PREFIX}/${INSTALL_LIB_DIR}/pkgconfig")
 
-if (NOT ${DISABLE_TESTS})
+if (${BUILD_TESTS})
 	enable_testing()
 	find_package(codecov)
 	add_coverage(acf)
